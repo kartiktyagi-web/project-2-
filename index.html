@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="user.js" defer></script>
+</head>
+<body class="bg-slate-100 min-h-screen p-8 flex flex-col items-center">
+
+  <h1 class="text-4xl font-extrabold text-slate-800 mb-1 text-center">
+    Your Bank Accounts
+  </h1>
+
+  <input 
+    type="text" 
+    id="username" 
+    placeholder="Search..." 
+    class="w-full max-w-xs px-4 py-2 border border-black bg-orange-100 rounded-lg mb-20 focus:outline-none focus:ring-2 focus:ring-orange-400"
+  >
+
+  <div id="accountModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50 p-4">
+    <div class="bg-white rounded-xl p-6 max-w-md w-full shadow-2xl border border-slate-200 transform transition-all">
+      
+      <div class="flex justify-between items-center border-b pb-3 mb-4">
+        <h2 id="modalName" class="text-2xl font-extrabold text-slate-800">Account Details</h2>
+        <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600 font-bold text-xl p-1">&times;</button>
+      </div>
+      
+      <div class="space-y-3">
+        <p class="text-sm text-slate-500">Handle: <span id="modalHandle" class="font-semibold text-orange-500"></span></p>
+        <p class="text-sm text-slate-500">Age: <span id="modalAge" class="font-bold text-slate-700"></span></p>
+        
+        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 mt-4">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Status Info</p>
+          <p id="modalStatus" class="text-sm text-slate-600 mt-2"></p>
+        </div>
+
+        <button id="addMoneyBtn" class="w-full mt-4 bg-orange-400 hover:bg-orange-500 text-slate-900 font-bold py-2 px-4 rounded-lg shadow transition-colors focus:outline-none focus:ring-2 focus:ring-orange-300">
+          Add Money
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="w-full max-w-6xl flex flex-col lg:flex-row-reverse gap-8 px-4 mt-6">
+    
+    <div class="w-full lg:w-64 bg-white p-6 rounded-xl shadow-md border border-slate-200 h-fit lg:sticky lg:top-6">
+      <h2 class="text-xl font-bold text-slate-800 mb-4">Filters</h2>
+      
+      <div class="mb-6">
+        <label class="block text-sm font-semibold text-slate-600 mb-2">Age Group</label>
+        <div class="space-y-2">
+          <label class="flex items-center text-sm text-slate-700 cursor-pointer">
+            <input type="checkbox" id="under30" value="under30" class="rounded text-indigo-600 focus:ring-indigo-500 mr-2"> Under 30
+          </label>
+          <label class="flex items-center text-sm text-slate-700 cursor-pointer">
+            <input type="checkbox" id="above30" value="above30" class="rounded text-indigo-600 focus:ring-indigo-500 mr-2"> 30 and Above
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-600 mb-2">Sort By</label>
+        <select id="sortBy" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:outline-none focus:border-indigo-500">
+          <option value="name">Name (A-Z)</option>
+          <option value="ageLow">Age (Low to High)</option>
+          <option value="ageHigh">Age (High to Low)</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="accounts-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+    </div>
+
+  </div>
+
+  <p id="output-simple"></p>
+
+  <div class="flex mt-12 rounded-md shadow-sm isolate -space-x-px border border-slate-300">
+    <button id="prevBtn" class="relative inline-flex items-center px-3 py-2 text-sm font-semibold text-gray-900 bg-orange-400 rounded-l-md ring-1 ring-inset ring-gray-300 hover:bg-orange-500 disabled:opacity-50 disabled:pointer-events-none">
+      Previous
+    </button>
+
+    <div id="pageNumbers" class="flex -space-x-px"></div>
+
+    <button id="nextBtn" class="relative inline-flex items-center px-3 py-2 text-sm font-semibold text-gray-900 bg-orange-400 rounded-r-md ring-1 ring-inset ring-gray-300 hover:bg-orange-500 disabled:opacity-50 disabled:pointer-events-none">
+      Next
+    </button>
+  </div>
+
+</body>
+</html>
